@@ -29,10 +29,31 @@ compile 'com.qiniu:qiniu-java-sdk:7.1.+'
 
 ## 使用方法
 
-* 在resource文件夹的QiniuKey.properties中填写自己的key，从portal中获得，这一步先做后续的操作才能进行。
+* 填写 用户 Access Key 和 Secret Key 到resource的配置文件中。登陆 https://portal.qiniu.com 可以查看自己的 Access Key 和 Secret Key。
 
 * SDK包含视频管理，转码配置和预设，水印配置，跑马灯配置和视频广告配置，需要用相应的方法，只需要实例化相应的类即可。
 
 * 上传资源，调用UploadRes类来上传。
 
 * JEDI 的 SDK 只依赖于七牛的存储SDK（包括okhttp,gson），不依赖于其他外部jar包。
+
+
+## 方法返回值说明
+* 对于返回值为string的方法
+  {
+     "msg": http response body,
+     "code": 200
+  }
+
+* 对于不能返回正确结果或者抛出异常的方法
+  {
+      "msg": http response body,
+      "code":http response status (400,401,403,500,501,502...) ，不能识别的返回-1
+  }
+
+* 对于返回值为布尔值的方法,直接判断服务器是否返回200来判断,返回200则为true，否则为false
+
+
+
+
+

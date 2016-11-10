@@ -7,6 +7,57 @@ public class WatermarkInfo {
 
     private String type;
     private boolean enabled;
+    private String gravity;
+
+    private int offsetX;
+    private int offsetY;
+
+    private String image;
+    private String text;
+
+    private String textFont;
+    private String textColor;
+    private int textSize;
+
+    public int getOffsetX() {
+        return offsetX;
+    }
+
+    public void setOffsetX(int offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+    }
+
+    public String getTextFont() {
+        return textFont;
+    }
+
+    public void setTextFont(String textFont) {
+        this.textFont = textFont;
+    }
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
 
     public String getType() {
         return type;
@@ -32,21 +83,6 @@ public class WatermarkInfo {
         this.gravity = gravity;
     }
 
-    public int getOffset_x() {
-        return offset_x;
-    }
-
-    public void setOffset_x(int offset_x) {
-        this.offset_x = offset_x;
-    }
-
-    public int getOffset_y() {
-        return offset_y;
-    }
-
-    public void setOffset_y(int offset_y) {
-        this.offset_y = offset_y;
-    }
 
     public String getImage() {
         return image;
@@ -64,37 +100,5 @@ public class WatermarkInfo {
         this.text = text;
     }
 
-    public String getText_font() {
-        return text_font;
-    }
-
-    public void setText_font(String text_font) {
-        this.text_font = text_font;
-    }
-
-    public String getText_color() {
-        return text_color;
-    }
-
-    public void setText_color(String text_color) {
-        this.text_color = text_color;
-    }
-
-    public int getText_size() {
-        return text_size;
-    }
-
-    public void setText_size(int text_size) {
-        this.text_size = text_size;
-    }
-
-    private String gravity;
-    private int offset_x;
-    private int offset_y;
-    private String image;
-    private String text;
-    private String text_font;
-    private String text_color;
-    private int text_size;
 
 }

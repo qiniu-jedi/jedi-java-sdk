@@ -27,8 +27,8 @@ public class UploadRes {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("hub", hub);
-        map.put("type", "video");
-        map.put("deadline", 6 * 3600);
+        map.put("type", "video");  //默认值
+        map.put("deadline", 6 * 3600);  //默认值
 
         if (deadline >= 0) {
             map.put("deadline", deadline);
@@ -79,14 +79,7 @@ public class UploadRes {
             Response r = e.response;
             // 请求失败时打印的异常的信息
             System.out.println(r.toString());
-            try {
-                //响应的文本信息
-                System.out.println(r.bodyString());
-            } catch (QiniuException e1) {
-                //ignore
-            }
         }
-
         return false;
     }
 }

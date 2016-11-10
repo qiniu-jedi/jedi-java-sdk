@@ -1,6 +1,8 @@
 package com.qiniu;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.VideoAdInfo;
 
 import java.util.HashMap;
@@ -23,10 +25,8 @@ public class VideoAdManage {
      * Content-Type: application/json
      */
     public String createVideoAdConf(VideoAdInfo videoAdInfo, String hub) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         String bodyStr = gson.toJson(videoAdInfo);
-
-        System.out.println(bodyStr);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/videos";
         String auth = httpClient.getHttpRequestSign("POST", rawUrl, bodyStr, true);
@@ -43,7 +43,7 @@ public class VideoAdManage {
      * @return
      */
     public boolean updateVideoAdConf(VideoAdInfo videoAdInfo, String hub, String adId) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         String bodyStr = gson.toJson(videoAdInfo);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/videos/" + adId;
@@ -53,6 +53,7 @@ public class VideoAdManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
 
     }
@@ -109,6 +110,7 @@ public class VideoAdManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
 
     }
@@ -152,6 +154,7 @@ public class VideoAdManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
 
     }

@@ -1,6 +1,8 @@
 package com.qiniu;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.TranssetArgs;
 
 import java.util.HashMap;
@@ -11,7 +13,7 @@ import java.util.Map;
  */
 public class TransconfManage {
 
-    private static  HttpClient httpClient;
+    private static HttpClient httpClient;
 
     public TransconfManage() {
         httpClient = HttpClient.getHttpClient();
@@ -51,6 +53,7 @@ public class TransconfManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 
@@ -61,7 +64,7 @@ public class TransconfManage {
      */
     public String createTransset(TranssetArgs args, String hub, String transconfId) {
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         String bodyStr = gson.toJson(args);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfs/" + transconfId + "/transsets";
@@ -90,7 +93,7 @@ public class TransconfManage {
      * @return
      */
     public boolean updateTransset(TranssetArgs args, String hub, String transconfId, String transsetId) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         String bodyStr = gson.toJson(args);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfs/" + transconfId + "/transsets/" + transsetId;
@@ -100,6 +103,7 @@ public class TransconfManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 
@@ -116,7 +120,7 @@ public class TransconfManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
-
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 
@@ -134,7 +138,7 @@ public class TransconfManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
-
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 

@@ -10,7 +10,33 @@ public class MarqueeConf {
     private int duration;
     private String image;
     private String text;
-    private String text_font;
+    private String textFont;
+    private String textColor;
+    private int textSize;
+
+    public String getTextFont() {
+        return textFont;
+    }
+
+    public void setTextFont(String textFont) {
+        this.textFont = textFont;
+    }
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
 
     public String getDirection() {
         return direction;
@@ -59,31 +85,5 @@ public class MarqueeConf {
     public void setText(String text) {
         this.text = text;
     }
-
-    public String getText_font() {
-        return text_font;
-    }
-
-    public void setText_font(String text_font) {
-        this.text_font = text_font;
-    }
-
-    public String getText_color() {
-        return text_color;
-    }
-
-    public void setText_color(String text_color) {
-        this.text_color = text_color;
-    }
-
-    public int getText_size() {
-        return text_size;
-    }
-
-    public void setText_size(int text_size) {
-        this.text_size = text_size;
-    }
-
-    private String text_color;
-    private int text_size;
+    
 }

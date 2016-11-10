@@ -5,18 +5,12 @@ package com.model;
  */
 public class VideoInfo {
 
-    private String bit_rate;
+    private String bitRate;
     private int width;
     private int height;
-    private String frame_rate;
+    private String frameRate;
+    private String codecName;
 
-    public String getBit_rate() {
-        return bit_rate;
-    }
-
-    public void setBit_rate(String bit_rate) {
-        this.bit_rate = bit_rate;
-    }
 
     public int getWidth() {
         return width;
@@ -34,23 +28,29 @@ public class VideoInfo {
         this.height = height;
     }
 
-    public String getFrame_rate() {
-        return frame_rate;
+
+    public String getBitRate() {
+        return bitRate;
     }
 
-    public void setFrame_rate(String frame_rate) {
-        this.frame_rate = frame_rate;
+    public void setBitRate(String bitRate) {
+        this.bitRate = bitRate;
     }
 
-    public String getCodec_name() {
-        return codec_name;
+    public String getFrameRate() {
+        return frameRate;
     }
 
-    public void setCodec_name(String codec_name) {
-        this.codec_name = codec_name;
+    public void setFrameRate(String frameRate) {
+        this.frameRate = frameRate;
     }
 
-    private String codec_name;
+    public String getCodecName() {
+        return codecName;
+    }
 
+    public void setCodecName(String codecName) {
+        this.codecName = codecName;
+    }
 }
 

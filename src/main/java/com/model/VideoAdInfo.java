@@ -5,15 +5,18 @@ package com.model;
  */
 public class VideoAdInfo {
 
-    private String video_key;
+    private String videoKey;
     private boolean enabled;
+    private String name;
+    private String position;
+    private String url;
 
-    public String getVideo_key() {
-        return video_key;
+    public String getVideoKey() {
+        return videoKey;
     }
 
-    public void setVideo_key(String video_key) {
-        this.video_key = video_key;
+    public void setVideoKey(String videoKey) {
+        this.videoKey = videoKey;
     }
 
     public boolean isEnabled() {
@@ -48,8 +51,5 @@ public class VideoAdInfo {
         this.url = url;
     }
 
-    private String name;
 
-    private String position;
-    private String url;
 }

@@ -1,6 +1,8 @@
 package com.qiniu;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.WatermarkInfo;
 
 import java.util.Map;
@@ -24,7 +26,7 @@ public class WatermarkManage {
      */
     public String createWatermarkConf(WatermarkInfo watermark, String hub) {
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         String bodyStr = gson.toJson(watermark);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/watermarks";
@@ -41,7 +43,7 @@ public class WatermarkManage {
      * @return
      */
     public boolean updateWatermarkConf(WatermarkInfo watermark, String hub, String watermarkId) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
         String bodyStr = gson.toJson(watermark);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/watermarks/" + watermarkId;
@@ -51,7 +53,7 @@ public class WatermarkManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
-
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 
@@ -69,7 +71,7 @@ public class WatermarkManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
-
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 
@@ -111,7 +113,7 @@ public class WatermarkManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
-
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 }

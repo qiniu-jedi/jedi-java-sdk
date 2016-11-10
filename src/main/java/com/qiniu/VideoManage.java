@@ -89,7 +89,7 @@ public class VideoManage {
      * DELETE /v1/hubs/<Hub>/videos/<EncodedVideoKey>
      * Authorization: <QiniuToken>
      */
-    public boolean deleteVideo(String hub, String videoKey) {
+    public boolean deleteOneVideo(String hub, String videoKey) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/videos/" + UrlSafeBase64.encodeToString(videoKey);
         String auth = httpClient.getHttpRequestSign("DELETE", rawUrl, null, false);
         Map<String, Object> ret = httpClient.doRequest("DELETE", rawUrl, null, false, auth);
@@ -107,7 +107,7 @@ public class VideoManage {
      *
      * @return
      */
-    public String deleteVideoList(String hub, String[] videoKeys) {
+    public String deleteBatchVideos(String hub, String[] videoKeys) {
 
         for (int i = 0; i < videoKeys.length; i++) {
             videoKeys[i] = UrlSafeBase64.encodeToString(videoKeys[i]);

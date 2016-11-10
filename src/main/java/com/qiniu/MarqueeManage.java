@@ -1,6 +1,8 @@
 package com.qiniu;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.MarqueeConf;
 
 import java.util.Map;
@@ -25,7 +27,8 @@ public class MarqueeManage {
      * @return
      */
     public boolean createMarqueeConf(MarqueeConf marquee, String hub) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+
         String bodyStr = gson.toJson(marquee);
 
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/marquee";
@@ -35,7 +38,7 @@ public class MarqueeManage {
         if ((Integer) ret.get("code") == 200) {
             return true;
         }
-
+        System.out.println("http response status:" + ret.get("code") + " error");
         return false;
     }
 
