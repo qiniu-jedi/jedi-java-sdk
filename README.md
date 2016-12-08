@@ -40,17 +40,19 @@ compile 'com.qiniu:qiniu-java-sdk:7.1.+'
 
 ## 方法返回值说明
 * 对于返回值为string的方法
+```
   {
      "msg": http response body,
      "code": 200
   }
-
+```
 * 对于不能返回正确结果或者抛出异常的方法
+```
   {
       "msg": http response body,
       "code":http response status (400,401,403,500,501,502...) ，不能识别的返回-1
   }
-
+```
 * 对于返回值为布尔值的方法,直接判断服务器是否返回200来判断,返回200则为true，否则为false
 
 
