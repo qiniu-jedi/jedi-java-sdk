@@ -68,7 +68,7 @@ public class HttpClient {
         try {
             URL url = new URL(rawUrl);
             HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-            httpCon.setRequestMethod(method);
+            httpCon.setRequestMethod(method.toUpperCase());
 
             if (hasContype) {
                 httpCon.setRequestProperty("Content-Type", "application/json");
@@ -118,6 +118,8 @@ public class HttpClient {
     }
 
     public String getHttpRequestSign(String method, String rawUrl, String bodyStr, boolean hasContype) {
+
+        method=method.toUpperCase();
 
         String contentType = null;
         if (hasContype) {
