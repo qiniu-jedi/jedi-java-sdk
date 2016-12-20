@@ -23,40 +23,6 @@ public class UploadRes {
     }
 
 
-//    private String getVodUptoken(String hub, int deadline, String type) {
-//        Gson gson = new Gson();
-//        Map<String, Object> map = new HashMap<String, Object>();
-//
-//        map.put("hub", hub);
-//        map.put("type", "video");  //默认值
-//        map.put("deadline", 6 * 3600);  //默认值
-//
-//        if (deadline >= 0) {
-//            map.put("deadline", deadline);
-//        }
-//
-//
-//        if (type != null && type.length() > 0) {
-//            map.put("type", type);
-//        }
-//
-//        String bodyStr = gson.toJson(map);
-//
-//        String rawUrl = Const.HOST + "/v1/uptokens";
-//
-//        String auth = httpClient.getHttpRequestSign("POST", rawUrl, bodyStr, true);
-//        Map<String, Object> ret = httpClient.doRequest("POST", rawUrl, bodyStr, true, auth);
-//
-//        Pattern pt = Pattern.compile("\"uptoken\":\"(.+?)\"}");
-//        Matcher matcher = pt.matcher(ret.get("msg").toString());
-//
-//        if (matcher.find()) {
-//            return matcher.group(1);
-//        }
-//
-//        return null;
-//    }
-
     private UptokenRet getVodUptokenV2(String hub, int deadline, String type) {
         Gson gson = new Gson();
         Map<String, Object> map = new HashMap<String, Object>();
