@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Created by qiniu.
+ * 视频广告管理，包括视频广告的增删改查
  */
 public class VideoAdManage {
 
@@ -21,8 +22,6 @@ public class VideoAdManage {
 
     /**
      * POST /v1/hubs/<Hub>/ad/videos
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
      */
     public String createVideoAdConf(VideoAdInfo videoAdInfo, String hub) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -37,10 +36,6 @@ public class VideoAdManage {
 
     /**
      * PUT /v1/hubs/<Hub>/ad/videos/<AdId>
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     *
-     * @return
      */
     public boolean updateVideoAdConf(VideoAdInfo videoAdInfo, String hub, String adId) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -60,9 +55,6 @@ public class VideoAdManage {
 
     /**
      * GET /v1/hubs/<Hub>/ad/videos/<AdId>
-     * Authorization: <QiniuToken>
-     *
-     * @return
      */
     public String getVideoAdConf(String hub, String adId) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/videos/" + adId;
@@ -74,10 +66,6 @@ public class VideoAdManage {
 
     /**
      * GET /v1/hubs/<Hub>/ad/videos?cursor=<Cursor>&count=<Count>&position=<Postion>&enabled=<Enabled>
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     *
-     * @return
      */
     public String getVideoAdConfList(String hub, Integer count, String cursor, String position, int enabled) {
         if (count == null) {
@@ -98,9 +86,6 @@ public class VideoAdManage {
 
     /**
      * DELETE /v1/hubs/<Hub>/ad/videos/<AdId>
-     * Authorization: <QiniuToken>
-     *
-     * @return
      */
     public boolean deleteVideoAdConf(String hub, String adId) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/videos/" + adId;
@@ -117,10 +102,6 @@ public class VideoAdManage {
 
     /**
      * DELETE /v1/hubs/<Hub>/ad/videos
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     *
-     * @return
      */
     public String deleteVideoAdConfList(String hub, String[] ids) {
 
@@ -140,9 +121,6 @@ public class VideoAdManage {
 
     /**
      * PUT /v1/hubs/<Hub>/ad/videos/<AdId>/enabled/<Enabled>
-     * Authorization: <QiniuToken>
-     *
-     * @return
      */
     public boolean enableVideoAdConf(String hub, String adId, int enabled) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub

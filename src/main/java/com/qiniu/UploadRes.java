@@ -13,6 +13,10 @@ import java.util.regex.Pattern;
 
 /**
  * Created by qiniu.
+ * 点播云资源上传
+ * 上传类型参考  用户文档
+ * 上传直接调用 本类的  uploadResource  ，属于直传文件方法，不支持分片
+ *
  */
 public class UploadRes {
 
@@ -31,7 +35,7 @@ public class UploadRes {
         map.put("type", "video");  //默认值
         map.put("deadline", 6 * 3600);  //默认值
 
-        if (deadline >= 0) {
+        if (deadline > 0) {
             map.put("deadline", deadline);
         }
 
@@ -52,10 +56,9 @@ public class UploadRes {
 
     /**
      * POST /v1/uptokens
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
+     * 上传资源的最主要方法
      *
-     * @return
+     * 参数依次的含义： 点播云空间名(对应portal-->点播空间左上角的名字)  ,失效时间，上传文件类型（参考文档），要上传的文件路径，最好用绝对路径
      */
     public boolean uploadResource(String hub, int deadline, String type, String key, String path) {
         if (type == null || type.length() <= 0) {

@@ -10,6 +10,8 @@ import java.util.Map;
 
 /**
  * Created by qiniu.
+ * 转码设置
+ * 包括转码的增删改查等操作
  */
 public class TransconfManage {
 
@@ -21,9 +23,6 @@ public class TransconfManage {
 
     /*
      * POST /v1/hubs/<Hub>/transconfs
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @return
      */
     public String createTransconf(String hub, String transconfName) {
 
@@ -42,8 +41,6 @@ public class TransconfManage {
 
     /*
      * DELETE /v1/hubs/<Hub>/transconfs/<TransconfId>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public boolean deleteTransconf(String hub, String transconfId) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfs/" + transconfId;
@@ -59,8 +56,6 @@ public class TransconfManage {
 
     /*
      * POST /v1/hubs/<Hub>/transconfs/<TransconfId>/transsets
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
      */
     public String createTransset(TranssetArgs args, String hub, String transconfId) {
 
@@ -76,7 +71,6 @@ public class TransconfManage {
 
     /*
      * GET /v1/hubs/<Hub>/transconfs/<TransconfId>/transsets/<TranssetId>
-     * Authorization: <QiniuToken>
      */
     public String getTransset(String hub, String transconfId, String transsetId) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfs/" + transconfId + "/transsets/" + transsetId;
@@ -88,9 +82,6 @@ public class TransconfManage {
 
     /*
      * PUT /v1/hubs/<Hub>/transconfs/<TransconfId>/transsets/<TranssetId>
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @return
      */
     public boolean updateTransset(TranssetArgs args, String hub, String transconfId, String transsetId) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -109,7 +100,6 @@ public class TransconfManage {
 
     /*
      * DELETE /v1/hubs/<Hub>/transconfs/<TransconfId>/transsets/<TranssetId>
-     * Authorization: <QiniuToken>
      */
     public boolean deleteTransset(String hub, String transconfId, String transsetId) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfs/" + transconfId + "/transsets/" + transsetId;
@@ -126,8 +116,6 @@ public class TransconfManage {
 
     /*
      * PUT /v1/hubs/<Hub>/transconfs/<TransconfId>/transsets/<TranssetId>/enabled/<Enabled>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public boolean enableTransset(String hub, String transconfId, String transsetId, int enabled) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfs/" + transconfId
@@ -144,8 +132,6 @@ public class TransconfManage {
 
     /*
      * GET /v1/hubs/<Hub>/transconfsall
-     * Authorization: <QiniuToken>
-     * @return
      */
     public String getAllTransconf(String hub) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/transconfsall";

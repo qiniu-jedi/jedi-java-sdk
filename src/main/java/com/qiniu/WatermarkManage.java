@@ -9,6 +9,8 @@ import java.util.Map;
 
 /**
  * Created by qiniu.
+ * 水印的设置
+ * 包括 水印的增删改查
  */
 public class WatermarkManage {
 
@@ -20,9 +22,6 @@ public class WatermarkManage {
 
     /*
      * POST /v1/hubs/<Hub>/watermarks
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @return
      */
     public String createWatermarkConf(WatermarkInfo watermark, String hub) {
 
@@ -38,9 +37,6 @@ public class WatermarkManage {
 
     /*
      * PUT /v1/hubs/<Hub>/watermarks/<WatermarkId>
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @return
      */
     public boolean updateWatermarkConf(WatermarkInfo watermark, String hub, String watermarkId) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -59,8 +55,6 @@ public class WatermarkManage {
 
     /*
      * DELETE /v1/hubs/<Hub>/watermarks/<WatermarkId>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public boolean deleteWatermarkConf(String hub, String watermarkId) {
 
@@ -77,8 +71,6 @@ public class WatermarkManage {
 
     /*
      * GET /v1/hubs/<Hub>/watermarks/<WatermarkId>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public String getWatermarkConf(String hub, String watermarkId) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/watermarks/" + watermarkId;
@@ -90,8 +82,6 @@ public class WatermarkManage {
 
     /*
      * GET /v1/hubs/<Hub>/watermarks
-     * Authorization: <QiniuToken>
-     * @return
      */
     public String getAllWatermarkConf(String hub) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/watermarks";
@@ -102,8 +92,6 @@ public class WatermarkManage {
 
     /*
      * PUT /v1/hubs/<Hub>/watermarks/<WatermarkId>/enabled/<Enabled>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public boolean enableWatermarkConf(String hub, String watermarkId, int enabled) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/watermarks/" + watermarkId + "/enabled/" + enabled;

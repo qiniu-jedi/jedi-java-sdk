@@ -26,6 +26,6 @@ public class VideoAdMain {
 
         System.out.println("==============upload resource===============");
         UploadRes up = new UploadRes();
-        System.out.println(up.uploadResource("lingyue", 3600 * 7, null, "bz2.mp4", "/Users/l2015019/Downloads/bz.mp4"));
+        System.out.println(up.uploadResource("lingyue", 3600 * 7, null, null, "/Users/l2015019/Downloads/bz.mp4"));
     }
 }

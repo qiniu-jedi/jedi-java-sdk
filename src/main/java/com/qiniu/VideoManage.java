@@ -9,6 +9,8 @@ import java.util.Map;
 
 /**
  * Created by qiniu.
+ * 视频管理
+ * 包含 获取视频信息，获取视频列表，修改视频信息，删除视频信息等
  */
 public class VideoManage {
 
@@ -20,8 +22,6 @@ public class VideoManage {
 
     /**
      * GET /v1/hubs/<Hub>/videos/<EncodedVideoKey>?include_player=<IncludePlayer>
-     *
-     * @return
      */
     public String getVideoInfo(String hub, String videoKey) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/videos/" + UrlSafeBase64.encodeToString(videoKey);
@@ -31,7 +31,6 @@ public class VideoManage {
 
     /*
      * GET /v1/hubs/<Hub>/videos?cursor=<Cursor>&count=<Count>
-     * Authorization: <QiniuToken>
      */
     public String getVideoInfoList(String hub, String cursor, Integer count) {
         if (count == null) {
@@ -48,8 +47,6 @@ public class VideoManage {
 
     /*
      * PUT /v1/hubs/<Hub>/videos/<EncodedVideoKey>
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
      */
     public boolean updateVideoInfo(UpdateVideoArgs args, String hub, String videoKey) {
 
@@ -70,8 +67,6 @@ public class VideoManage {
 
     /*
      * PUT /v1/hubs/<Hub>/videos/<EncodedVideoKey>/thumbnails/active/<Active>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public boolean appointVideoThumbnails(String hub, String videoKey, int active) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/videos/" + UrlSafeBase64.encodeToString(videoKey)
@@ -87,7 +82,6 @@ public class VideoManage {
 
     /*
      * DELETE /v1/hubs/<Hub>/videos/<EncodedVideoKey>
-     * Authorization: <QiniuToken>
      */
     public boolean deleteOneVideo(String hub, String videoKey) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/videos/" + UrlSafeBase64.encodeToString(videoKey);
@@ -102,10 +96,6 @@ public class VideoManage {
 
     /*
      * DELETE /v1/hubs/<Hub>/videos
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     *
-     * @return
      */
     public String deleteBatchVideos(String hub, String[] videoKeys) {
 

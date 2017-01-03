@@ -12,6 +12,7 @@ import java.util.Properties;
 
 /**
  * Created by qiniu.
+ * 请求API的client，包括URL鉴权，发送请求等
  */
 public class HttpClient {
 
@@ -29,7 +30,10 @@ public class HttpClient {
         this.secretKey = sk;
     }
 
-
+    /***
+     * 加载到配置文件里的ak和sk
+     * @return
+     */
     public static HttpClient getHttpClient() {
         Properties prop = new Properties();
 
@@ -57,9 +61,14 @@ public class HttpClient {
 
 
     /**
-     * url
-     * content-type
-     * authorization
+        传参数类型：
+            http  method
+            完整的请求URL
+            请求body，如果没有的话填null
+            是否有content-type ，没有的话填null
+            是否需要鉴权，没有的话填null
+
+        return：API的返回值，以键值对的形式返回，code存放http状态码，msg存放response body
      **/
     public Map<String, Object> doRequest(String method, String rawUrl, String bodyStr, boolean hasContype, String auth) {
         Map<String, Object> resMap = new HashMap<String, Object>();
@@ -117,6 +126,15 @@ public class HttpClient {
         return resMap;
     }
 
+    /***
+     传参数类型：
+         http  method
+         完整的请求URL
+         请求body，如果没有的话填null
+         是否有content-type ，没有的话填null
+         是否需要鉴权，没有的话填null
+     return: 返回鉴权字符串
+     */
     public String getHttpRequestSign(String method, String rawUrl, String bodyStr, boolean hasContype) {
 
         method=method.toUpperCase();

@@ -9,6 +9,9 @@ import java.util.Map;
 
 /**
  * Created by qiniu
+ *
+ * 域名管理
+ * 包括创建域名，设置默认域名，停用启用域名，防盗链设置，获取域名列表，获取单条域名信息
  */
 public class DomainManage {
     private static HttpClient httpClient;
@@ -20,10 +23,6 @@ public class DomainManage {
 
     /**
      * POST /v1/hubs/<Hub>/domains
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     *
-     * @return
      */
     public boolean createCustomDomain(String hub, String domain, String geoCover) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -45,10 +44,6 @@ public class DomainManage {
 
     /***
      * DELETE /v1/hubs/<Hub>/domains/<Domain>
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @param domain
-     * @return
      */
     public boolean removeCustomDomain(String hub,String domain){
         String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain;
@@ -65,7 +60,6 @@ public class DomainManage {
 
     /**
      * PUT  /v1/hubs/<Hub>/domains/<Domain>/default/<Default>
-     * Authorization: <QiniuToken>
      */
     public boolean setCustomDomain(String hub,String domain,int defaultNum){
         String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain+"/default/"+defaultNum;
@@ -82,10 +76,6 @@ public class DomainManage {
 
     /***
      * GET /v1/hubs/<Hub>/domains/<Domain>
-     * Authorization:<QiniuToken>
-     * @param hub
-     * @param domain
-     * @return
      */
     public String getCustomDomainInfo(String hub,String domain){
         String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain;
@@ -97,9 +87,6 @@ public class DomainManage {
 
     /***
      * GET /v1/hubs/<Hub>/domains
-     * Authorization:<QiniuToken>
-     * @param hub
-     * @return
      */
     public String getCustomDomainInfoList(String hub){
         String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains";
@@ -111,10 +98,6 @@ public class DomainManage {
 
     /***
      * POST /v1/hubs/<Hub>/domains/<Domain>/enabled/<Enabled>
-     * Authorization:<QiniuToken>
-     * @param hub
-     * @param domain
-     * @return
      */
     public boolean enableCustomDomain(String hub,String domain,int enableNum){
         String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain+"/enabled/"+enableNum;

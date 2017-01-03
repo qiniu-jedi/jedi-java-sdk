@@ -9,11 +9,11 @@ import com.qiniu.UploadRes;
  */
 public class ImageAdMain {
 
-    public static void main(String[] args){
-        ImageAdManage imageAdManage=new ImageAdManage();
+    public static void main(String[] args) {
+        ImageAdManage imageAdManage = new ImageAdManage();
 
         UploadRes up = new UploadRes();
-        System.out.println(up.uploadResource("jedihub", 3600 * 7, "image_ad", "1.jpeg", "/Users/l2015019/Desktop/1.jpeg"));
+        System.out.println(up.uploadResource("lingyue", 3600 * 7, "image_ad", "1.jpeg", "/Users/l2015019/Desktop/1.jpeg"));
 
         ImageAdArgs imageAdArgs=new ImageAdArgs();
         imageAdArgs.setImage("qresources/image_ad/58578e1bcaf6554c28000179");

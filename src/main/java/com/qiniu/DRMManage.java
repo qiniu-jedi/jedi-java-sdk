@@ -7,6 +7,8 @@ import java.util.Map;
 
 /**
  * Created by qiniu
+ * DRM 管理，包括 设置 DRM 保护模式，获取视频用户加密密钥，获取 DRM 保护模式
+ * 详细参考用户文档
  */
 public class DRMManage {
     private static HttpClient httpClient;
@@ -29,9 +31,6 @@ public class DRMManage {
 
     /***
      * GET /v1/hubs/<Hub>/protection
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @return
      */
     public String getDRMSafeMode(String hub) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/protection";
@@ -42,10 +41,6 @@ public class DRMManage {
 
     /***
      * GET /v1/hubs/<Hub>/videos/<EncodedVideoKey>/ukey
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @param videoKey
-     * @return
      */
     public String getVideoUserSecretKey(String hub, String videoKey) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/videos/" + UrlSafeBase64.encodeToString(videoKey) + "/ukey";

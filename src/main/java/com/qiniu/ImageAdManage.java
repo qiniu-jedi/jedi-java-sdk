@@ -11,6 +11,8 @@ import java.util.Map;
 
 /**
  * Created by qiniu
+ * 视频广告管理
+ * 包括视频广告的增删改查等
  */
 public class ImageAdManage {
 
@@ -18,16 +20,10 @@ public class ImageAdManage {
 
     public ImageAdManage() {
         httpClient = HttpClient.getHttpClient();
-
     }
 
     /***
      * POST /v1/hubs/<Hub>/ad/images
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @param hub
-     * @param args
-     * @return
      */
     public String createImageAd(String hub, ImageAdArgs args) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -44,12 +40,6 @@ public class ImageAdManage {
 
     /***
      * PUT /v1/hubs/<Hub>/ad/images/<AdId>
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @param hub
-     * @param adId
-     * @param args
-     * @return
      */
     public boolean updateImageAd(String hub, String adId, ImageAdArgs args) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -70,10 +60,6 @@ public class ImageAdManage {
 
     /***
      * GET /v1/hubs/<Hub>/ad/images/<AdId>
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @param adId
-     * @return
      */
     public String getImageAdInfo(String hub,String adId){
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/images/"+adId;
@@ -84,9 +70,6 @@ public class ImageAdManage {
 
     /***
      * GET /v1/hubs/<Hub>/ad/images
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @return
      */
     public String getImageAdInfoList(String hub){
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/images";
@@ -97,10 +80,6 @@ public class ImageAdManage {
 
     /***
      * DELETE /v1/hubs/<Hub>/ad/images/<AdId>
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @param adId
-     * @return
      */
     public boolean deleteImageAd(String hub,String adId){
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/ad/images/" + adId;
@@ -116,11 +95,6 @@ public class ImageAdManage {
 
     /***
      * DELETE /v1/hubs/<Hub>/ad/images
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @param hub
-     * @param adIds
-     * @return
      */
     public String deleteImageAdList(String hub,String[] adIds){
         Map<String, Object> idMap = new HashMap<String, Object>();
@@ -138,11 +112,6 @@ public class ImageAdManage {
 
     /***
      * PUT /v1/hubs/<Hub>/ad/images/<AdId>/enabled/<Enabled>
-     * Authorization: <QiniuToken>
-     * @param hub
-     * @param adId
-     * @param enabled
-     * @return
      */
     public boolean enableImageAd(String hub,String adId,int enabled){
         String rawUrl = Const.HOST + "/v1/hubs/" + hub

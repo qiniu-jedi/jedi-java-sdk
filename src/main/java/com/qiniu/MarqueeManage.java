@@ -9,6 +9,8 @@ import java.util.Map;
 
 /**
  * Created by qiniu.
+ * 跑马灯管理
+ * 包括跑马灯的增查，停用启用
  */
 public class MarqueeManage {
 
@@ -22,9 +24,6 @@ public class MarqueeManage {
 
     /*
      * POST /v1/hubs/<Hub>/marquee
-     * Authorization: <QiniuToken>
-     * Content-Type: application/json
-     * @return
      */
     public boolean createMarqueeConf(MarqueeConf marquee, String hub) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -44,8 +43,6 @@ public class MarqueeManage {
 
     /*
      * GET /v1/hubs/<Hub>/marquee
-     * Authorization: <QiniuToken>
-     * @return
      */
     public String getMarqueeConf(String hub) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/marquee";
@@ -57,8 +54,6 @@ public class MarqueeManage {
 
     /*
      * PUT /v1/hubs/<Hub>/marquee/enabled/<Enabled>
-     * Authorization: <QiniuToken>
-     * @return
      */
     public boolean enableMarqueeConf(String hub, int enabled) {
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/marquee/enabled/" + enabled;
