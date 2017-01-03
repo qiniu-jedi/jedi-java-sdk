@@ -5,6 +5,7 @@ import com.model.UptokenRet;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
+import com.qiniu.util.StringMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,6 @@ import java.util.regex.Pattern;
  * 点播云资源上传
  * 上传类型参考  用户文档
  * 上传直接调用 本类的  uploadResource  ，属于直传文件方法，不支持分片
- *
  */
 public class UploadRes {
 
@@ -57,10 +57,10 @@ public class UploadRes {
     /**
      * POST /v1/uptokens
      * 上传资源的最主要方法
-     *
+     * <p>
      * 参数依次的含义： 点播云空间名(对应portal-->点播空间左上角的名字)  ,失效时间，上传文件类型（参考文档），要上传的文件路径，最好用绝对路径
      */
-    public boolean uploadResource(String hub, int deadline, String type, String key, String path) {
+    public Map<String, Object> uploadResource(String hub, int deadline, String type, String key, String path) {
         if (type == null || type.length() <= 0) {
             type = "video";
         }
@@ -70,18 +70,28 @@ public class UploadRes {
         //创建上传对象
         UploadManager uploadManager = new UploadManager();
 
+        Map<String, Object> ret = new HashMap<String, Object>();
         try {
             //调用put方法上传
             Response res = uploadManager.put(path, type.equals("video") && key != null && key.length() > 0 ? key : uptokenRet.getKey(), uptokenRet.getUptoken());
             //打印返回的信息
             System.out.println(res.bodyString());
-            return true;
+
+
+            StringMap retMap = res.jsonToMap();
+
+            ret.put("code",res.statusCode);
+            ret.put("hash", retMap.get("hash"));
+            ret.put("key", retMap.get("key"));
+
         } catch (QiniuException e) {
             Response r = e.response;
-            // 请求失败时打印的异常的信息
-            System.out.println(r.toString());
+            // 请求失败时,返回错误码，由客户自己根据错误码，在前端显示相应的提示信息
+            ret.put("code",r.statusCode);
+            ret.put("msg",r.toString());  // 错误信息
         }
-        return false;
+
+        return ret;
     }
 
 
