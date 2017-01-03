@@ -13,4 +13,6 @@ public class Const {
 
     public static final String CONTENT_JSON = "application/json";
 
+    public static final String CONTENT_STREAM="application/octet-stream";
+
 }

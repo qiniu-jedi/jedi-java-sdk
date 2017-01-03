@@ -58,6 +58,10 @@ public class UploadRes {
      * @return
      */
     public boolean uploadResource(String hub, int deadline, String type, String key, String path) {
+        if (type == null || type.length() <= 0) {
+            type = "video";
+        }
+
         UptokenRet uptokenRet = getVodUptokenV2(hub, deadline, type);
 
         //创建上传对象
@@ -76,4 +80,6 @@ public class UploadRes {
         }
         return false;
     }
+
+
 }
