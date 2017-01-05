@@ -32,11 +32,11 @@ compile 'com.qiniu:qiniu-java-sdk:7.1.+'
 
 * 填写 用户 Access Key 和 Secret Key 到resource的配置文件中。登陆 https://portal.qiniu.com 可以查看自己的 Access Key 和 Secret Key。
 
-* SDK包含视频管理，转码配置和预设，水印配置，跑马灯配置和视频广告配置，需要用相应的方法，只需要实例化相应的类即可。
+* SDK包含视频管理，转码配置和预设，水印配置，跑马灯配置，视频广告配置，贴片广告配置，DRM配置，自定义域名配置，需要用相应的方法，只需要实例化相应的类即可。
 
 * 上传资源，调用UploadRes类来上传,private 方法不要修改和调用，直接调用相应的public方法即可。该public方法属于直传文件方法。
 
-* JEDI 的 SDK 只依赖于七牛的存储SDK（存储SDK会自动下载它依赖的第三方包，包括okhttp,gson），除了存储的jar包，不依赖于其他外部jar包。
+* 点播云的 SDK 只依赖于七牛的存储SDK（存储SDK会自动下载它依赖的第三方包，包括okhttp,gson），除了存储的jar包，不依赖于其他外部jar包。
 
 
 ## 方法返回值说明
