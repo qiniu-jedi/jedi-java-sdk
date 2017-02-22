@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * Created by qiniu
- *
+ * <p>
  * 域名管理
  * 包括创建域名，设置默认域名，停用启用域名，防盗链设置，获取域名列表，获取单条域名信息
  */
@@ -24,9 +24,8 @@ public class DomainManage {
     /**
      * POST /v1/hubs/<Hub>/domains
      */
-    public boolean createCustomDomain(String hub, String domain, String geoCover) {
+    public boolean createCustomDomain(String hub, CustomDomainArgs args) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-        CustomDomainArgs args = new CustomDomainArgs(domain, geoCover);
 
         String bodyStr = gson.toJson(args);
         String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/domains";
@@ -45,9 +44,9 @@ public class DomainManage {
     /***
      * DELETE /v1/hubs/<Hub>/domains/<Domain>
      */
-    public boolean removeCustomDomain(String hub,String domain){
-        String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain;
-        String auth=httpClient.getHttpRequestSign("DELETE",rawUrl,null,false);
+    public boolean removeCustomDomain(String hub, String domain) {
+        String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/domains/" + domain;
+        String auth = httpClient.getHttpRequestSign("DELETE", rawUrl, null, false);
 
         Map<String, Object> ret = httpClient.doRequest("DELETE", rawUrl, null, false, auth);
 
@@ -61,9 +60,9 @@ public class DomainManage {
     /**
      * PUT  /v1/hubs/<Hub>/domains/<Domain>/default/<Default>
      */
-    public boolean setCustomDomain(String hub,String domain,int defaultNum){
-        String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain+"/default/"+defaultNum;
-        String auth=httpClient.getHttpRequestSign("PUT",rawUrl,null,false);
+    public boolean setCustomDomain(String hub, String domain, int defaultNum) {
+        String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/domains/" + domain + "/default/" + defaultNum;
+        String auth = httpClient.getHttpRequestSign("PUT", rawUrl, null, false);
 
         Map<String, Object> ret = httpClient.doRequest("PUT", rawUrl, null, false, auth);
 
@@ -77,9 +76,9 @@ public class DomainManage {
     /***
      * GET /v1/hubs/<Hub>/domains/<Domain>
      */
-    public String getCustomDomainInfo(String hub,String domain){
-        String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain;
-        String auth=httpClient.getHttpRequestSign("GET",rawUrl,null,false);
+    public String getCustomDomainInfo(String hub, String domain) {
+        String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/domains/" + domain;
+        String auth = httpClient.getHttpRequestSign("GET", rawUrl, null, false);
 
         Map<String, Object> ret = httpClient.doRequest("GET", rawUrl, null, false, auth);
         return new Gson().toJson(ret);
@@ -88,9 +87,9 @@ public class DomainManage {
     /***
      * GET /v1/hubs/<Hub>/domains
      */
-    public String getCustomDomainInfoList(String hub){
-        String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains";
-        String auth=httpClient.getHttpRequestSign("GET",rawUrl,null,false);
+    public String getCustomDomainInfoList(String hub) {
+        String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/domains";
+        String auth = httpClient.getHttpRequestSign("GET", rawUrl, null, false);
 
         Map<String, Object> ret = httpClient.doRequest("GET", rawUrl, null, false, auth);
         return new Gson().toJson(ret);
@@ -99,9 +98,9 @@ public class DomainManage {
     /***
      * POST /v1/hubs/<Hub>/domains/<Domain>/enabled/<Enabled>
      */
-    public boolean enableCustomDomain(String hub,String domain,int enableNum){
-        String rawUrl=Const.HOST+"/v1/hubs/"+hub+"/domains/"+domain+"/enabled/"+enableNum;
-        String auth=httpClient.getHttpRequestSign("POST",rawUrl,null,false);
+    public boolean enableCustomDomain(String hub, String domain, int enableNum) {
+        String rawUrl = Const.HOST + "/v1/hubs/" + hub + "/domains/" + domain + "/enabled/" + enableNum;
+        String auth = httpClient.getHttpRequestSign("POST", rawUrl, null, false);
 
         Map<String, Object> ret = httpClient.doRequest("POST", rawUrl, null, false, auth);
 

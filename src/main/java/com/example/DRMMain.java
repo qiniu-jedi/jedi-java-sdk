@@ -16,7 +16,7 @@ public class DRMMain {
 
         System.out.println(drmManage.getDRMSafeMode("lingyue"));
 
-        System.out.println(drmManage.getVideoUserSecretKey("lingyue", "onepiece.mp4"));
+        System.out.println(drmManage.getVideoUserSecretKey("lingyue", "bz.mp4"));
 
     }
 }

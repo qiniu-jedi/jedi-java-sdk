@@ -5,27 +5,57 @@ package com.model;
  */
 public class CustomDomainArgs {
 
-    public CustomDomainArgs(String domain,String geoCover){
-        this.setDomain(domain);
-        this.setGeoCover(geoCover);
-    }
-
     private String domain;
     private String geoCover;
+    private String protocol;
+    private String serverKey;
+    private String serverCrt;
 
-    public String getDomain(){
-        return  this.domain;
+    public String getGeoCover() {
+        return geoCover;
     }
 
-    public void setDomain(String domain){
-        this.domain=domain;
+    public void setGeoCover(String geoCover) {
+        this.geoCover = geoCover;
     }
 
-    public String getGeoCover(){
-        return this.geoCover;
+    public CustomDomainArgs() {
+
     }
-    public void setGeoCover(String geoCover){
-        this.geoCover=geoCover;
+
+    public String getProtocol() {
+        return protocol;
+
     }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public String getServerKey() {
+        return serverKey;
+    }
+
+    public void setServerKey(String serverKey) {
+        this.serverKey = serverKey;
+    }
+
+    public String getServerCrt() {
+        return serverCrt;
+    }
+
+    public void setServerCrt(String serverCrt) {
+        this.serverCrt = serverCrt;
+    }
+
+
+    public String getDomain() {
+        return this.domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
 
 }

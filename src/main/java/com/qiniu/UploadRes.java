@@ -66,6 +66,12 @@ public class UploadRes {
         }
 
         UptokenRet uptokenRet = getVodUptokenV2(hub, deadline, type);
+        if (uptokenRet!=null){
+            System.out.println("print");
+            System.out.println(uptokenRet.getKey());
+            System.out.println(uptokenRet.getUptoken());
+            System.out.println("print end");
+        }
 
         //创建上传对象
         UploadManager uploadManager = new UploadManager();
