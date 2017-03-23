@@ -26,7 +26,9 @@ public class UploadRes {
         httpClient = HttpClient.getHttpClient();
     }
 
-
+    /*
+     * POST /v1/uptokens
+     */
     private UptokenRet getVodUptokenV2(String hub, int deadline, String type) {
         Gson gson = new Gson();
         Map<String, Object> map = new HashMap<String, Object>();
@@ -55,48 +57,61 @@ public class UploadRes {
     }
 
     /**
-     * POST /v1/uptokens
      * 上传资源的最主要方法
-     * <p>
      * 参数依次的含义： 点播云空间名(对应portal-->点播空间左上角的名字)  ,失效时间，上传文件类型（参考文档），要上传的文件路径，最好用绝对路径
+     * StringMap 可以填的 key, crc32, x:vod, accept, xvod
      */
-    public Map<String, Object> uploadResource(String hub, int deadline, String type, String key, String path) {
+    public Map<String, Object> uploadResource(String hub, int deadline, String type, String path, Map<String, Object> params) {
         if (type == null || type.length() <= 0) {
             type = "video";
         }
 
         UptokenRet uptokenRet = getVodUptokenV2(hub, deadline, type);
-        if (uptokenRet!=null){
-            System.out.println("print");
-            System.out.println(uptokenRet.getKey());
-            System.out.println(uptokenRet.getUptoken());
-            System.out.println("print end");
+        // 判空，能否获取token
+        if (uptokenRet == null) {
+            System.err.println("cann't get vod uptoken");
+            return null;
         }
 
-        //创建上传对象
+        // 创建上传对象
         UploadManager uploadManager = new UploadManager();
 
         Map<String, Object> ret = new HashMap<String, Object>();
         try {
-            //调用put方法上传
-            Response res = uploadManager.put(path, type.equals("video") && key != null && key.length() > 0 ? key : uptokenRet.getKey(), uptokenRet.getUptoken());
-            //打印返回的信息
-            System.out.println(res.bodyString());
+            // key 参数为空，则用uptokenRet里的key
+            String k = uptokenRet.getKey();
+            if (params.containsKey("key")) {
+                k = params.get("key").toString();
+                params.remove("key");
+            }
 
+            boolean checkCrc=false;
+            if (params.containsKey("crc32")){
+                checkCrc=(Boolean) params.get("crc32");
+                params.remove("crc32");
+            }
+
+            // 调用put方法上传
+            StringMap qparams=new StringMap();
+            qparams.putAll(params);
+            Response res=uploadManager.put(path,k,uptokenRet.getUptoken(),qparams,null,false);
+
+            // 打印返回的信息
+            System.out.println(res.bodyString());
 
             StringMap retMap = res.jsonToMap();
 
-            ret.put("code",res.statusCode);
+            ret.put("code", res.statusCode);
             ret.put("hash", retMap.get("hash"));
             ret.put("key", retMap.get("key"));
 
         } catch (QiniuException e) {
             Response r = e.response;
             // 请求失败时,返回错误码，由客户自己根据错误码，在前端显示相应的提示信息
-            ret.put("code",r.statusCode);
-            ret.put("msg",r.toString());  // 错误信息
+            ret.put("code", r.statusCode);
+            ret.put("msg", r.toString());  // 错误信息
+            System.err.printf("upload file error:%s",e.toString());
         }
-
         return ret;
     }
 
