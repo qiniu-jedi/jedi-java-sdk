@@ -73,8 +73,10 @@ public class UploadRes {
             return null;
         }
 
+        Configuration cf = new Configuration(Zone.autoZone());
+        
         // 创建上传对象
-        UploadManager uploadManager = new UploadManager();
+        UploadManager uploadManager = new UploadManager(cf);
 
         Map<String, Object> ret = new HashMap<String, Object>();
         try {
