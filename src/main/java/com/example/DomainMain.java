@@ -12,21 +12,18 @@ public class DomainMain {
 
         DomainManage domainManage = new DomainManage();
         CustomDomainArgs dargs = new CustomDomainArgs();
-        dargs.setDomain("zhaoling0002.qiniuts.com");
-        dargs.setProtocol("https");
+        dargs.setDomain("your domain");
+        dargs.setProtocol("https or http");
         dargs.setGeoCover("china");
-        dargs.setServerKey("");
-        dargs.setServerCrt("");
+        dargs.setServerKey("your server key");
+        dargs.setServerCrt("your server crt");
 
-        boolean x = domainManage.createCustomDomain("qa-dianbotest", dargs);
-        System.out.println(x);
-
-        System.out.println(domainManage.getCustomDomainInfo("lingyue", "hao123.qbox.net"));
-        System.out.println(domainManage.getCustomDomainInfoList("lingyue"));
-        System.out.println(domainManage.setCustomDomain("lingyue", "hao123.qbox.net", 1));
-
-        System.out.println(domainManage.enableCustomDomain("lingyue", "hao123.qbox.net", 1));
-        System.out.println(domainManage.enableCustomDomain("lingyue", "hao123.qbox.net", 0));
-        System.out.println(domainManage.removeCustomDomain("lingyue", "hao123.qbox.net"));
+        System.out.println(domainManage.createCustomDomain("your hub name", dargs));
+        System.out.println(domainManage.getCustomDomainInfo("your hub name", "your domain"));
+        System.out.println(domainManage.getCustomDomainInfoList("your hub name"));
+        System.out.println(domainManage.setCustomDomain("your hub name", "your domain", 1));
+        System.out.println(domainManage.enableCustomDomain("your hub name", "your domain", 1));
+        System.out.println(domainManage.enableCustomDomain("your hub name", "your domain", 0));
+        System.out.println(domainManage.removeCustomDomain("your hub name", "your domain"));
     }
 }

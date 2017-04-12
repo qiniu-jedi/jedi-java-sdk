@@ -8,7 +8,7 @@
 <dependency>
   <groupId>com.qiniu</groupId>
   <artifactId>qiniu-java-sdk</artifactId>
-  <version>[7.0.0, 7.2.99]</version>
+  <version>[7.2.0, 7.2.99]</version>
 </dependency>
 ```
 或者 Gradle:

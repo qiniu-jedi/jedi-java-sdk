@@ -3,7 +3,9 @@ package com.qiniu;
 import com.google.gson.Gson;
 import com.model.UptokenRet;
 import com.qiniu.common.QiniuException;
+import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.StringMap;
 
@@ -58,8 +60,8 @@ public class UploadRes {
 
     /**
      * 上传资源的最主要方法
-     * 参数依次的含义： 点播云空间名(对应portal-->点播空间左上角的名字)  ,失效时间，上传文件类型（参考文档），要上传的文件路径，最好用绝对路径
-     * StringMap 可以填的 key, crc32, x:vod, accept, xvod
+     * 参数依次的含义： 点播云空间名(对应portal-->点播空间左上角的名字)，失效时间，上传文件类型（参考文档），要上传的文件路径（最好用绝对路径）
+     * StringMap （params参数）可以put进  key, crc32, x:vod, accept, xvod  这些值进去
      */
     public Map<String, Object> uploadResource(String hub, int deadline, String type, String path, Map<String, Object> params) {
         if (type == null || type.length() <= 0) {
@@ -73,8 +75,10 @@ public class UploadRes {
             return null;
         }
 
+        Configuration cf = new Configuration(Zone.autoZone());
+
         // 创建上传对象
-        UploadManager uploadManager = new UploadManager();
+        UploadManager uploadManager = new UploadManager(cf);
 
         Map<String, Object> ret = new HashMap<String, Object>();
         try {
@@ -94,7 +98,7 @@ public class UploadRes {
             // 调用put方法上传
             StringMap qparams=new StringMap();
             qparams.putAll(params);
-            Response res=uploadManager.put(path,k,uptokenRet.getUptoken(),qparams,null,false);
+            Response res=uploadManager.put(path,k,uptokenRet.getUptoken(),qparams,null,checkCrc);
 
             // 打印返回的信息
             System.out.println(res.bodyString());
